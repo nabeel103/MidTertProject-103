@@ -5,19 +5,37 @@
  */
 package midtermproject;
 
+import java.io.FileWriter;
+import java.io.FilterWriter;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Windows 10
  */
 public class LoginPage extends javax.swing.JFrame {
+    studentClass student = new studentClass();
+    studentClass setStudentData(studentClass s)
+    {
+        s = student;
+        return s;
+    }
+    studentClass getStudentData()
+    {
+        return student;
+    }
 
+    
     /**
      * Creates new form LoginPage
      */
     public LoginPage() {
         initComponents();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -34,11 +52,11 @@ public class LoginPage extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        username = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        Passsword = new javax.swing.JPasswordField();
         jSeparator2 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -108,13 +126,13 @@ public class LoginPage extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/midtermproject/image/icons8_username_50px_2.png"))); // NOI18N
 
-        jTextField1.setFont(new java.awt.Font("Calibri Light", 1, 24)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(30, 47, 66));
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jTextField1.setAutoscrolls(false);
-        jTextField1.setBorder(null);
-        jTextField1.setOpaque(false);
-        jTextField1.setSelectedTextColor(new java.awt.Color(128, 128, 128));
+        username.setFont(new java.awt.Font("Calibri Light", 1, 24)); // NOI18N
+        username.setForeground(new java.awt.Color(30, 47, 66));
+        username.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        username.setAutoscrolls(false);
+        username.setBorder(null);
+        username.setOpaque(false);
+        username.setSelectedTextColor(new java.awt.Color(128, 128, 128));
 
         jSeparator1.setBackground(new java.awt.Color(30, 47, 66));
         jSeparator1.setForeground(new java.awt.Color(30, 47, 66));
@@ -122,10 +140,10 @@ public class LoginPage extends javax.swing.JFrame {
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/midtermproject/image/icons8_sign_in_form_password_50px.png"))); // NOI18N
 
-        jPasswordField1.setFont(new java.awt.Font("Calibri Light", 1, 24)); // NOI18N
-        jPasswordField1.setBorder(null);
-        jPasswordField1.setDisabledTextColor(new java.awt.Color(30, 47, 66));
-        jPasswordField1.setOpaque(false);
+        Passsword.setFont(new java.awt.Font("Calibri Light", 1, 24)); // NOI18N
+        Passsword.setBorder(null);
+        Passsword.setDisabledTextColor(new java.awt.Color(30, 47, 66));
+        Passsword.setOpaque(false);
 
         jSeparator2.setBackground(new java.awt.Color(30, 47, 66));
         jSeparator2.setForeground(new java.awt.Color(30, 47, 66));
@@ -158,9 +176,9 @@ public class LoginPage extends javax.swing.JFrame {
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jSeparator1)
-                            .addComponent(jPasswordField1, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE)
+                            .addComponent(Passsword, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE)
                             .addComponent(jSeparator2))))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -180,7 +198,7 @@ public class LoginPage extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(37, 37, 37)
@@ -188,7 +206,7 @@ public class LoginPage extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Passsword, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(1, 1, 1))
@@ -222,6 +240,7 @@ public class LoginPage extends javax.swing.JFrame {
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, "System has been closed");
         System.exit(0);
     }//GEN-LAST:event_jButton2MouseClicked
 
@@ -240,10 +259,107 @@ public class LoginPage extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        admin a = new admin();
-        Student s = new Student();
-        s.setVisible(true);
-        a.setVisible(true);
+        
+        if (username.getText().contains("@")) {
+            
+            String []domain = username.getText().split("@");
+            
+            if (domain[0].equalsIgnoreCase("uet") && domain[1].equalsIgnoreCase("admin") && Passsword.getText().equals("admin123")) 
+            {
+                
+                 admin a = new admin();
+                 a.setVisible(true);
+                
+            } else if (domain[1].equalsIgnoreCase("teacher")) 
+            {
+                teacher teacher = new teacher();
+                boolean flag = false;
+                adminClass teach = new adminClass();
+                try {
+                    teach.loadTeacher();
+                    for (teacher t : teach.teachetList) {
+                        if(t.username.equalsIgnoreCase(username.getText()) && t.password.equals(Passsword.getText()) )
+                        {
+                            teacher = t;
+                            flag = true;
+                        }
+                        
+                    }
+                } catch (IOException ex) {
+                    Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                if (flag) {
+//                    JOptionPane.showMessageDialog(null, teacher.name);
+                    try {
+                    FileWriter save = new FileWriter("loginTeaher.txt",false);
+//                    System.out.println(student.name);
+                    save.write(teacher.name+","+teacher.getCourseTitle()+","+teacher.getCourseCode()+","+teacher.cnic+","+teacher.phoneNumber+","+teacher.username+","+teacher.password+"\n");
+                    save.flush();
+                    save.close();
+                } catch (IOException ex) {
+                    Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                    dispose();
+                    TeacherFrame tf = new TeacherFrame();
+                    tf.setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Unable to find teacher", "Teacher", 0);
+                }
+                
+            } else if (domain[1].equalsIgnoreCase("student")) {
+                
+                
+                
+                boolean flag = getIgnoreRepaint();
+                
+                adminClass std = new adminClass();
+                
+                try {
+                    std.loadStudent();
+                    for (studentClass t : std.studentList) {
+                        if(t.username.equalsIgnoreCase(username.getText()) && t.password.equals(Passsword.getText()) )
+                        {
+                            student = t;
+                            flag = true;
+                        }
+                    }
+                } catch (IOException ex) {
+                    Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                if (flag) {
+                    Student s = new Student();
+                    try {
+                    FileWriter save = new FileWriter("loginStudent.txt",false);
+//                    System.out.println(student.name);
+                    save.write(student.name+","+student.getRegNo()+","+student.getSession()+","+student.cnic+","+student.phoneNumber+","+student.username+","+student.password+"\n");
+                    save.flush();
+                    save.close();
+                } catch (IOException ex) {
+                    Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
+                }
+//                    System.out.println(student.name);
+                    s.setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Unable to fing your account", "Student", 0);
+                }
+                
+               
+                
+                
+                        
+                
+                
+                
+            } else {
+                JOptionPane.showMessageDialog(null, "Invalid Attempt", "Login", 0);
+            }      
+            
+        } else {
+            JOptionPane.showMessageDialog(null, "Invalid Attempt", "Login", 0);
+        }
+       
+        
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
@@ -282,6 +398,7 @@ public class LoginPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPasswordField Passsword;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
@@ -291,9 +408,8 @@ public class LoginPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables
 }
