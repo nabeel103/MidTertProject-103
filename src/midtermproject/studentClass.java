@@ -5,6 +5,9 @@
  */
 package midtermproject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Windows 10
@@ -12,7 +15,7 @@ package midtermproject;
 public class studentClass extends Basic{
     private String regNo;
     private String session;
-
+    List<Double>obtainedMarks = new ArrayList<>();
     public studentClass() {
     }
 

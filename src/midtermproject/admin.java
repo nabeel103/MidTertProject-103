@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -19,8 +20,22 @@ public class admin extends javax.swing.JFrame {
     /**
      * Creates new form admin
      */
+        adminClass studentList = new adminClass();
+
+    String column[] = new String[] {"Name","Reg No","CNIC","Session","Phone Number","Username","Password"};
+     DefaultTableModel studentTable;
     public admin() {
+        try {
+                // TODO add your handling code here:
+
+                studentList.loadStudent();
+            } catch (IOException ex) {
+                Logger.getLogger(admin.class.getName()).log(Level.SEVERE, null, ex);
+            }
         initComponents();
+        studentTable=new DefaultTableModel(column,0);
+        jTable1.setModel(studentTable);
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -68,10 +83,18 @@ public class admin extends javax.swing.JFrame {
         sPassword = new javax.swing.JPasswordField();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Administrator");
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(30, 47, 66));
         jPanel1.setPreferredSize(new java.awt.Dimension(1080, 900));
@@ -532,6 +555,35 @@ public class admin extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Add Student", jPanel4);
 
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 931, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(76, 76, 76)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 531, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(70, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Student List", jPanel3);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -539,7 +591,7 @@ public class admin extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(67, 67, 67)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 931, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(82, Short.MAX_VALUE))
+                .addContainerGap(112, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -553,9 +605,9 @@ public class admin extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1080, Short.MAX_VALUE)
+            .addGap(0, 1110, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1110, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -572,7 +624,6 @@ public class admin extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         
-        adminClass studentList = new adminClass();
         studentClass s = new studentClass(regNo.getText(),session.getText());
         
         s.name = sName.getText();
@@ -583,7 +634,7 @@ public class admin extends javax.swing.JFrame {
         try {
             //        t.setCourseTitle(courseTitle.getText());
 //        t.setCourseCode(courseCode.getText());
-        studentList.loadStudent();
+//        studentList.loadStudent();
         studentList.addStudent(s);
         
         if(studentList.saveStudent())
@@ -595,6 +646,7 @@ public class admin extends javax.swing.JFrame {
         }
         
         
+ 
         
         
         
@@ -707,6 +759,17 @@ teacherList.addTeacher(t);
         // TODO add your handling code here:
     }//GEN-LAST:event_courseCodeActionPerformed
 
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+            
+        studentTable.setRowCount(0);
+        for (studentClass s1 : studentList.studentList) {
+            
+        Object[] view = {s1.name,s1.getRegNo(),s1.cnic,s1.getSession(),s1.phoneNumber,s1.username,s1.password};
+        studentTable.addRow(view);
+        }
+        
+    }//GEN-LAST:event_formWindowActivated
+
     /**
      * @param args the command line arguments
      */
@@ -765,8 +828,11 @@ teacherList.addTeacher(t);
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTextField regNo;
     private javax.swing.JTextField sCinic;
     private javax.swing.JTextField sName;
